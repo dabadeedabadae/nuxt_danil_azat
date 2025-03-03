@@ -4,37 +4,33 @@
       <img src="assets/images/logo.jpg" class="w-16 h-16 bg-transparent" alt="Arizona Logo">
     </div>
     <div class="basis-1/4 max-sm:hidden"></div>
-    <template>
-  <nav
-    :class= "{
-      'basis-1/2 flex flex-row items-center justify-end px-8 gap-4': !burger || burger, 'max-sm:basis-auto max-sm:absolute max-sm:top-full max-sm:w-full max-sm:justify-center max-sm:flex-col max-sm:gap-2 max-sm:bg-white max-sm:px-2 max-sm:z-0': burger,
-      'max-sm:hidden': !burger}">
-    <NuxtLink to="/" class="my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-b-2 max-sm:border-black max-sm:text-center">Home</NuxtLink>
-    <div class="my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center max-sm:px-0 max-sm:pb-0" @click = "switch_submenu">Labs
-      <div class="flex flex-col absolute top-full bg-white text-black w-56 text-center max-sm:relative max-sm:w-full max-sm:bg-red-100" v-show = "submenu">
-        <NuxtLink to="/lab3" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-t-2 max-sm:text-center">Lab3</NuxtLink>
-        <NuxtLink to="/lab4" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab4</NuxtLink>
-        <NuxtLink to="/lab5" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab5</NuxtLink>
-        <NuxtLink to="/lab6" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab6</NuxtLink>
+
+    <nav
+      :class="{
+        'basis-1/2 flex flex-row items-center justify-end px-8 gap-4': !burger,
+        'max-sm:flex max-sm:flex-col max-sm:items-center max-sm:w-full max-sm:absolute max-sm:top-full max-sm:left-0 max-sm:bg-white max-sm:z-20': burger,
+        'max-sm:hidden': !burger
+      }">
+      <NuxtLink to="/" class="my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-b-2 max-sm:border-black max-sm:text-center">Home</NuxtLink>
+      <div class="relative my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center max-sm:px-0 max-sm:pb-0" @click="switch_submenu">
+        Labs
+        <div class="absolute top-full left-0 flex flex-col bg-white text-black w-56 text-center max-sm:relative max-sm:w-full max-sm:bg-red-100" v-show="submenu">
+          <NuxtLink to="/lab3" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-t-2 max-sm:text-center">Lab3</NuxtLink>
+          <NuxtLink to="/lab4" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab4</NuxtLink>
+          <NuxtLink to="/lab5" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab5</NuxtLink>
+          <NuxtLink to="/lab6" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab6</NuxtLink>
+        </div>
       </div>
-    </div>
+      <NuxtLink to="/login" class="my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Login</NuxtLink>
+      <NuxtLink to="/logout" class="my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Logout</NuxtLink>
+    </nav>
 
-    <NuxtLink to="/login" :class="{'my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center': !submenu, 'my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-b-2 max-sm:border-t-2 max-sm:border-black max-sm:text-center': !submenu}">Login</NuxtLink>
-    <NuxtLink to="/logout" :class="{'my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center': !submenu}">Logout</NuxtLink>
-  </nav>
-</template>
-    <div v-if="!burger" @click="switch_burger" class="max-sm:flex max-sm:flex-col max-sm:mr-8 max-sm:justify-between max-sm:items-center max-sm:w-8 max-sm:h-6 max-sm:mt-5">
-        <span class="h-[3px] w-full bg-blue-950"></span>
-        <span class="h-[3px] w-full bg-blue-950"></span>
-        <span class="h-[3px] w-full bg-blue-950"></span>
+    <div @click="switch_burger" class="max-sm:flex max-sm:flex-col max-sm:mr-8 max-sm:justify-between max-sm:items-center max-sm:w-8 max-sm:h-6 max-sm:mt-5">
+      <span :class="{'h-[3px] w-full bg-blue-950 transition-transform': true, 'rotate-45 relative top-[9px]': burger}"></span>
+      <span :class="{'h-[3px] w-full bg-blue-950 transition-opacity': true, 'opacity-0': burger}"></span>
+      <span :class="{'h-[3px] w-full bg-blue-950 transition-transform': true, 'rotate-[-45deg] relative bottom-3': burger}"></span>
     </div>
-
-    <div v-else @click="switch_burger" class="max-sm:flex max-sm:flex-col max-sm:mr-8 max-sm:justify-between max-sm:items-center max-sm:w-8 max-sm:h-6 max-sm:mt-5">
-        <span class="h-[3px] w-full bg-blue-950 rotate-45 relative top-[9px]"></span>
-        <span class="h-[3px] w-full bg-blue-950 opacity-0"></span>
-        <span class="h-[3px] w-full bg-blue-950 relative bottom-3 rotate-[-45deg]"></span>
-    </div>
-</header>
+  </header>
 
   <main class="p-5 flex bg-green-100 min-h-screen">
     <slot />
@@ -47,11 +43,9 @@
   </footer>
 </template>
 
-
-
 <script setup lang="ts">
 import { useHead } from '#app'
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 useHead({
   script: [
@@ -68,15 +62,12 @@ useHead({
       `,
       type: 'text/javascript',
     },
-   ],
-   __dangerouslyDisableSanitizersByTagID: {
-    gtag: ['innerHTML']
-   },
-});
+  ],
+  __dangerouslyDisableSanitizers: ['script'],
+})
 
-const burger = ref<boolean>(false)
-const submenu = ref<boolean>(false)
-const switch_burger = ()=> {burger.value = !burger.value}
-const switch_submenu = ()=> {submenu.value = !submenu.value}
-
+const burger = ref(false)
+const submenu = ref(false)
+const switch_burger = () => { burger.value = !burger.value }
+const switch_submenu = () => { submenu.value = !submenu.value }
 </script>
